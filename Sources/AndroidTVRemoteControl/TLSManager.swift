@@ -57,6 +57,9 @@ public class TLSManager {
             completionHandler(secIdentity)
         }, queue)
         
-        return .Result(NWParameters(tls: options))
+        let tcpOptions = NWProtocolTCP.Options()
+        tcpOptions.connectionTimeout = 3
+
+        return .Result(NWParameters(tls: options, tcp: tcpOptions))
     }
 }
